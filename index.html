@@ -784,10 +784,21 @@
         <div class="heading">
           <div>
             <h1>Live Barcode Scanner</h1>
-            <p>Scan real jewelry barcodes using your device camera or USB barcode scanner gun.</p>
+            <p>Scan real jewelry barcodes using your device camera, photo upload, or USB scanner gun.</p>
           </div>
           <div style="display:flex;gap:8px;">
             <button id="toggleAudioBtn" class="secondary" onclick="toggleScannerBeep()">🔊 Sound: ON</button>
+          </div>
+        </div>
+
+        <!-- Security / Protocol Banner if opened via file:// -->
+        <div id="fileProtocolWarning" class="hidden" style="background:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:12px 16px;border-radius:10px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;font-size:12.5px;">
+          <span style="font-size:18px;">⚠️</span>
+          <div>
+            <strong>Camera Security Notice:</strong> You opened this file directly via <code>file://</code>. Modern browsers (Chrome, Edge, Safari) strictly block live webcam streaming on local <code>file://</code> files for security.
+            <div style="margin-top:4px;">
+              👉 <strong>Solution:</strong> Open via local server (<strong>http://localhost:8080/index.html</strong>) or deploy on Vercel/Netlify. Alternatively, use the <strong>"📁 Scan from Photo / Image"</strong> or <strong>"USB / Manual SKU"</strong> below.
+            </div>
           </div>
         </div>
 
@@ -802,17 +813,25 @@
                 </div>
                 <div style="display:flex;gap:8px;align-items:center;">
                   <label style="font-size:11px;color:#c0baa8;">Camera:</label>
-                  <select id="cameraSelect" style="background:#2e2a21;color:#fff;border:1px solid #4a4435;padding:3px 6px;border-radius:4px;font-size:11px;"></select>
+                  <select id="cameraSelect" onchange="onCameraSelectionChange()" style="background:#2e2a21;color:#fff;border:1px solid #4a4435;padding:3px 6px;border-radius:4px;font-size:11px;max-width:180px;"></select>
                 </div>
               </div>
 
               <!-- Video / Viewfinder element -->
-              <div id="reader"></div>
+              <div id="reader" style="position:relative;"></div>
 
               <div class="scanner-controls">
                 <button id="startCamBtn" class="gold-btn" onclick="startCameraScanner()">▶ Start Camera Scanner</button>
                 <button id="stopCamBtn" class="secondary hidden" style="background:#3b362a;color:#fff;border-color:#574f3d;" onclick="stopCameraScanner()">⏹ Stop Camera</button>
-                <button id="torchBtn" class="secondary hidden" style="background:#3b362a;color:#fff;border-color:#574f3d;" onclick="toggleTorch()">🔦 Torch</button>
+                <button id="torchBtn" class="secondary hidden" style="background:#3b362a;color:#fff;border-color:#574f3d;" onclick="toggleTorch()">🔦 Torch: OFF</button>
+                <label class="secondary" style="background:#2a261f;color:#dfcca0;border:1px solid #574f3d;padding:8px 14px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12.5px;">
+                  📁 Scan from Photo / Image
+                  <input type="file" id="barcodeFileInput" accept="image/*" style="display:none;" onchange="handleBarcodeFileUpload(event)">
+                </label>
+              </div>
+
+              <div style="margin-top:10px;font-size:11px;color:#a8a18c;text-align:center;">
+                Supports 1D Jewelry Barcodes (Code 128, Code 39, EAN-13, UPC) & 2D QR Tags. Hold tag 15–20cm steady with good lighting.
               </div>
             </div>
 
@@ -830,6 +849,18 @@
                 Connect any standard USB/Bluetooth handheld barcode scanner. It automatically enters the code and triggers search.
               </p>
             </div>
+
+            <!-- Instant Test Barcodes for Demo -->
+            <div class="panel" style="margin-top:18px;">
+              <div class="panelhead">
+                <h2>🧪 Instant Test Barcodes</h2>
+                <span class="pill">1-Click Test</span>
+              </div>
+              <p style="color:var(--muted);font-size:11.5px;margin:0 0 10px;">
+                Aim your camera at these screen barcodes, or click <strong>Simulate</strong> to test the instant lookup & stock decrement flow:
+              </p>
+              <div id="testBarcodesGrid" style="display:flex;flex-direction:column;gap:10px;"></div>
+            </div>
           </div>
 
           <!-- Right Column: Scanned Product Display & Live Log -->
@@ -844,7 +875,7 @@
                 <div style="text-align:center;padding:35px 20px;color:var(--muted);border:1px dashed var(--line);border-radius:10px;">
                   <div style="font-size:32px;margin-bottom:8px;">📷</div>
                   <strong style="display:block;color:var(--ink);margin-bottom:4px;">No Barcode Scanned Yet</strong>
-                  <span>Aim your camera at any jewelry tag or type a SKU to see the item details instantly.</span>
+                  <span>Aim your camera at any jewelry tag, upload a tag photo, or type a SKU to see the item details instantly.</span>
                 </div>
               </div>
             </div>
@@ -1256,6 +1287,7 @@ function showPage(pageId) {
   if (pageId === 'products') renderProducts();
   if (pageId === 'inventory') renderStock();
   if (pageId === 'scanner') {
+    renderSampleTestBarcodes();
     setTimeout(() => {
       const inp = document.getElementById('scanInput');
       if (inp) inp.focus();
@@ -1324,14 +1356,51 @@ function toggleScannerBeep() {
 }
 
 // ==========================================
-// CAMERA SCANNER ENGINE (Html5Qrcode)
+// CAMERA SCANNER ENGINE (Html5Qrcode Robust)
 // ==========================================
+let isTorchOn = false;
+
+function getBarcodeFormats() {
+  if (typeof Html5QrcodeSupportedFormats === 'undefined') return undefined;
+  return [
+    Html5QrcodeSupportedFormats.CODE_128,
+    Html5QrcodeSupportedFormats.CODE_39,
+    Html5QrcodeSupportedFormats.CODE_93,
+    Html5QrcodeSupportedFormats.EAN_13,
+    Html5QrcodeSupportedFormats.EAN_8,
+    Html5QrcodeSupportedFormats.UPC_A,
+    Html5QrcodeSupportedFormats.UPC_E,
+    Html5QrcodeSupportedFormats.ITF,
+    Html5QrcodeSupportedFormats.QR_CODE
+  ];
+}
+
+function initQrEngine() {
+  if (!html5QrCode) {
+    const formats = getBarcodeFormats();
+    html5QrCode = new Html5Qrcode("reader", {
+      formatsToSupport: formats,
+      experimentalFeatures: {
+        useBarCodeDetectorIfSupported: true
+      },
+      verbose: false
+    });
+  }
+  return html5QrCode;
+}
+
 async function initCameras() {
   const select = document.getElementById('cameraSelect');
-  if (!select) return;
+  const warn = document.getElementById('fileProtocolWarning');
   
+  if (location.protocol === 'file:' && warn) {
+    warn.classList.remove('hidden');
+  }
+
+  if (!select) return;
+
   if (typeof Html5Qrcode === 'undefined') {
-    select.innerHTML = '<option>Camera engine loading...</option>';
+    select.innerHTML = '<option value="">Camera library loading...</option>';
     return;
   }
 
@@ -1343,17 +1412,23 @@ async function initCameras() {
         const opt = document.createElement('option');
         opt.value = cam.id;
         opt.textContent = cam.label || `Camera ${idx + 1}`;
-        // Prefer back / environment camera for mobile
         if (/back|rear|environment/i.test(cam.label)) {
           opt.selected = true;
         }
         select.appendChild(opt);
       });
     } else {
-      select.innerHTML = '<option value="">No cameras detected</option>';
+      select.innerHTML = '<option value="">Auto-Detect Default Camera</option>';
     }
   } catch (err) {
-    select.innerHTML = '<option value="">Camera permission needed</option>';
+    select.innerHTML = '<option value="">Default Camera / Prompt on Start</option>';
+  }
+}
+
+async function onCameraSelectionChange() {
+  if (isCameraScanning) {
+    await stopCameraScanner();
+    await startCameraScanner();
   }
 }
 
@@ -1368,60 +1443,175 @@ async function startCameraScanner() {
 
   if (isCameraScanning) return;
 
+  if (location.protocol === 'file:') {
+    const warn = document.getElementById('fileProtocolWarning');
+    if (warn) warn.classList.remove('hidden');
+  }
+
+  initQrEngine();
+
   const select = document.getElementById('cameraSelect');
-  const cameraId = select ? select.value : null;
+  const cameraId = select ? select.value : '';
+
+  // Scan frame configuration optimized for 1D horizontal jewelry tags
+  const config = {
+    fps: 20,
+    qrbox: function(viewfinderWidth, viewfinderHeight) {
+      const width = Math.min(Math.floor(viewfinderWidth * 0.90), 450);
+      const height = Math.min(Math.floor(viewfinderHeight * 0.60), 220);
+      return { width: Math.max(width, 240), height: Math.max(height, 100) };
+    },
+    aspectRatio: 1.777778,
+    videoConstraints: {
+      facingMode: { ideal: "environment" },
+      width: { ideal: 1920, min: 1280 },
+      height: { ideal: 1080, min: 720 }
+    }
+  };
+
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  let primaryCameraConfig;
+  if (cameraId && cameraId.length > 5) {
+    primaryCameraConfig = { deviceId: { exact: cameraId } };
+  } else if (isMobile) {
+    primaryCameraConfig = { facingMode: "environment" };
+  } else {
+    // Desktop: use ideal or user facing to prevent OverconstrainedError
+    primaryCameraConfig = { facingMode: "user" };
+  }
 
   try {
-    html5QrCode = new Html5Qrcode("reader");
-    const config = {
-      fps: 15,
-      qrbox: { width: 280, height: 160 },
-      aspectRatio: 1.777778,
-      formatsToSupport: [
-        Html5QrcodeSupportedFormats.CODE_128,
-        Html5QrcodeSupportedFormats.EAN_13,
-        Html5QrcodeSupportedFormats.UPC_A,
-        Html5QrcodeSupportedFormats.CODE_39,
-        Html5QrcodeSupportedFormats.QR_CODE
-      ]
-    };
-
-    const cameraConfig = cameraId ? { deviceId: { exact: cameraId } } : { facingMode: "environment" };
-
+    document.getElementById('cameraStatusText').textContent = 'Requesting camera...';
     await html5QrCode.start(
-      cameraConfig,
+      primaryCameraConfig,
       config,
       onBarcodeDetected,
-      () => {} // silent scan frame error
+      () => {} // silent scan frame failure
     );
-
-    isCameraScanning = true;
-    document.getElementById('startCamBtn').classList.add('hidden');
-    document.getElementById('stopCamBtn').classList.remove('hidden');
-    document.getElementById('cameraStatusText').textContent = 'Scanning live...';
-    document.getElementById('cameraStatusText').style.color = '#22c55e';
-    showToast('Camera active. Aim at barcode.');
   } catch (err) {
-    console.error('Camera start failed:', err);
-    alert('Camera error: ' + (err.message || 'Please grant camera access in browser permissions.'));
+    console.warn('Initial camera config failed, falling back:', err);
+    // Fallback: try default camera without strict facingMode
+    try {
+      await html5QrCode.start(
+        { facingMode: "user" },
+        config,
+        onBarcodeDetected,
+        () => {}
+      );
+    } catch (fallbackErr) {
+      console.error('All camera attempts failed:', fallbackErr);
+      const isFile = location.protocol === 'file:';
+      alert('Camera could not start: ' + (fallbackErr.name || fallbackErr.message || fallbackErr) + 
+        (isFile ? '\n\nNOTE: Browsers block webcams on file:// URLs. Please run a local web server (http://localhost:8080) or use the "Scan from Photo / Image" button.' : ''));
+      document.getElementById('cameraStatusText').textContent = 'Camera Blocked';
+      document.getElementById('cameraStatusText').style.color = '#ef4444';
+      return;
+    }
   }
+
+  isCameraScanning = true;
+  document.getElementById('startCamBtn').classList.add('hidden');
+  document.getElementById('stopCamBtn').classList.remove('hidden');
+  document.getElementById('cameraStatusText').textContent = 'Scanning live...';
+  document.getElementById('cameraStatusText').style.color = '#22c55e';
+
+  // Check torch capability
+  try {
+    const track = html5QrCode.getRunningTrackCameraCapabilities?.();
+    const torchBtn = document.getElementById('torchBtn');
+    if (torchBtn && track && track.torch) {
+      torchBtn.classList.remove('hidden');
+    }
+  } catch (e) {}
+
+  showToast('Camera active. Aim at barcode tag.');
+  // Refresh camera options now that permission is granted
+  initCameras();
 }
 
 async function stopCameraScanner() {
   if (html5QrCode && isCameraScanning) {
     try {
       await html5QrCode.stop();
-      html5QrCode.clear();
     } catch (e) {
-      console.error(e);
+      console.warn('Camera stop error:', e);
     }
     isCameraScanning = false;
     document.getElementById('startCamBtn').classList.remove('hidden');
     document.getElementById('stopCamBtn').classList.add('hidden');
+    document.getElementById('torchBtn').classList.add('hidden');
     document.getElementById('cameraStatusText').textContent = 'Camera Paused';
     document.getElementById('cameraStatusText').style.color = '#c0baa8';
     showToast('Camera scanner stopped.');
   }
+}
+
+async function toggleTorch() {
+  if (!html5QrCode || !isCameraScanning) return;
+  try {
+    isTorchOn = !isTorchOn;
+    await html5QrCode.applyVideoConstraints({
+      advanced: [{ torch: isTorchOn }]
+    });
+    const btn = document.getElementById('torchBtn');
+    if (btn) btn.textContent = isTorchOn ? '🔦 Torch: ON' : '🔦 Torch: OFF';
+  } catch (err) {
+    console.warn('Torch toggle failed:', err);
+    showToast('Torch not supported on this device');
+  }
+}
+
+// Photo / File Upload Scanner (works everywhere, even without live webcam)
+async function handleBarcodeFileUpload(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  try {
+    initQrEngine();
+    showToast('Analyzing photo for barcode...');
+    const decodedText = await html5QrCode.scanFile(file, true);
+    if (decodedText) {
+      onBarcodeDetected(decodedText);
+    }
+  } catch (err) {
+    console.warn('File decode error:', err);
+    alert('No clear barcode detected in this image. Tips:\n1. Ensure good lighting\n2. Hold camera close to avoid blur\n3. Ensure entire barcode bars & margins are in frame.');
+  } finally {
+    event.target.value = '';
+  }
+}
+
+// Render test barcodes strip for client demo & instant 1-click test
+function renderSampleTestBarcodes() {
+  const grid = document.getElementById('testBarcodesGrid');
+  if (!grid) return;
+
+  const samples = products.slice(0, 3);
+  grid.innerHTML = samples.map(p => `
+    <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <strong style="display:block;font-size:12.5px;color:var(--ink);">${escapeHtml(p.name)}</strong>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--gold-dark);font-weight:700;">${escapeHtml(p.sku)}</span>
+        <div style="font-size:11px;color:var(--muted);">${money(p.price)} · Stock: ${p.stock}</div>
+      </div>
+      <div style="text-align:center;">
+        <svg id="sample_bc_${escapeHtml(p.id)}" style="max-height:36px;"></svg>
+        <div style="margin-top:4px;">
+          <button class="secondary" style="padding:4px 8px;font-size:11px;" onclick="simulateBarcodeScan('${escapeHtml(p.sku)}')">⚡ Simulate</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  samples.forEach(p => {
+    renderBarcodeSvg(`#sample_bc_${p.id}`, p.sku, { height: 26, width: 1.1, margin: 6 });
+  });
+}
+
+function simulateBarcodeScan(sku) {
+  playBeep();
+  processScannedCode(sku);
+  showToast('Simulated scan for ' + sku);
 }
 
 function onBarcodeDetected(decodedText) {
@@ -1658,10 +1848,10 @@ function renderBarcodeSvg(selector, text, opts = {}) {
   try {
     JsBarcode(selector, text, {
       format: "CODE128",
-      displayValue: false,
-      margin: 0,
+      displayValue: opts.displayValue ?? false,
+      margin: opts.margin !== undefined ? opts.margin : 10,
       lineColor: "#000000",
-      background: "transparent",
+      background: opts.background || "#ffffff",
       height: opts.height || 30,
       width: opts.width || 1.3
     });
@@ -1905,8 +2095,9 @@ function generatePrintWindow(productList, copiesPerItem, labelType) {
             displayValue: false,
             height: ${barcodeHeight},
             width: ${barcodeWidth},
-            margin: 0,
-            lineColor: "#000000"
+            margin: 8,
+            lineColor: "#000000",
+            background: "#ffffff"
           });
         } catch(e) {}
       });
