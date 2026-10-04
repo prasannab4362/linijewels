@@ -1,15 +1,2161 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lini Jewels | Barcode & Stock Prototype</title><script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script><style>
-:root{--ink:#27251f;--muted:#77746d;--gold:#a98543;--gold2:#ead9b5;--bg:#f7f5f0;--card:#fff;--line:#e9e5dc;--green:#31734c;--red:#a33d35}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial}.app{display:flex;min-height:100vh}.side{width:238px;background:#29271f;color:#f8f4e9;padding:24px 15px;flex-shrink:0}.brand{display:flex;gap:11px;align-items:center;padding:0 10px 25px;border-bottom:1px solid #484439}.gem{width:39px;height:39px;border-radius:12px;background:#403a2d;color:#e6c77e;display:grid;place-items:center;font-size:21px}.brand b{display:block;letter-spacing:1.8px;font-size:15px}.brand small{color:#bdb6a5;font-size:10px}.navlabel{font-size:10px;letter-spacing:1.5px;color:#aaa393;margin:23px 11px 8px}.nav button{width:100%;border:0;background:none;color:#d5d0c5;text-align:left;padding:11px;border-radius:9px;display:flex;gap:12px;align-items:center;margin:3px 0;cursor:pointer;font:inherit}.nav button.active,.nav button:hover{background:#454033;color:#fff}.nav i{font-style:normal;width:18px;text-align:center;color:#d9bd7e}.sidefoot{position:sticky;top:90vh;margin:35px 9px 0;color:#aaa393;font-size:11px;line-height:1.6}.main{min-width:0;flex:1}.top{height:67px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px}.top small{color:var(--muted)}.user{border:1px solid var(--line);border-radius:30px;padding:7px 12px;font-size:12px}.content{padding:28px 30px;max-width:1300px;margin:auto}.heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.heading h1{font-size:25px;margin:0 0 5px;letter-spacing:-.6px}.heading p{margin:0;color:var(--muted)}button,.btn{cursor:pointer}.primary{background:#302d25;color:white;border:1px solid #302d25;border-radius:8px;padding:10px 15px;font:inherit}.primary:hover{background:#514735}.secondary{background:white;border:1px solid var(--line);border-radius:8px;padding:9px 13px;color:var(--ink);font:inherit}.danger{color:var(--red)}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:17px}.statrow{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.staticon{color:var(--gold);font-size:19px}.stat strong{display:block;font-size:25px;margin:12px 0 3px;letter-spacing:-.7px}.stat small{color:var(--muted);font-size:11px}.panel{margin-bottom:17px}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.panelhead h2{font-size:15px;margin:0}.search{width:min(300px,100%);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font:inherit;outline-color:var(--gold)}table{border-collapse:collapse;width:100%;text-align:left}th{font-size:10px;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);font-weight:600;background:#faf9f6}th,td{padding:12px 10px;border-bottom:1px solid #efede7}td{font-size:12px}tbody tr:last-child td{border-bottom:0}.sku{font-family:ui-monospace,monospace;color:#71684f}.pill{border-radius:20px;padding:4px 8px;background:#edf5ee;color:var(--green);font-size:10px}.pill.low{background:#fff3dd;color:#986a1d}.actions{display:flex;gap:6px}.linkbtn{border:0;background:none;color:#8b6b31;font:inherit;font-size:11px;padding:4px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:11px;color:#666157;font-weight:600}.field input,.field select{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit;outline-color:var(--gold)}.span2{grid-column:1/-1}.formactions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}.hidden{display:none!important}.scanbox{display:flex;gap:8px}.scanbox input{flex:1;min-width:0;padding:12px;border:1px solid var(--line);border-radius:8px;font:inherit}.productresult{display:flex;align-items:center;justify-content:space-between;gap:15px;background:#faf8f3;border:1px solid var(--line);padding:16px;border-radius:10px;margin-top:14px}.tag{width:260px;min-height:145px;border:1px dashed #b6a47c;background:white;padding:13px;text-align:center;margin:12px auto;color:#26231e}.tag b{letter-spacing:1.5px;color:#967339;font-size:13px}.tag .pname{font-weight:650;margin:8px 0 2px}.tag .price{font-weight:750;font-size:15px;margin-top:3px}.tag svg{max-width:100%;height:48px}.hint{color:var(--muted);font-size:11px;line-height:1.6}.empty{text-align:center;color:var(--muted);padding:35px 10px}.toast{padding:10px 12px;background:#edf5ee;color:var(--green);border-radius:8px;margin-bottom:12px}.mobilehead{display:none}
-@media(max-width:850px){.side{width:190px}.content{padding:22px 17px}.top{padding:0 17px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.app{display:block}.side{display:none}.mobilehead{display:flex;background:#29271f;color:#fff;align-items:center;justify-content:space-between;padding:12px 16px}.mobilehead b{letter-spacing:1.4px}.mobilehead select{max-width:160px;background:#403a2d;color:#fff;border:1px solid #625842;padding:7px;border-radius:7px}.top{height:48px}.content{padding:17px 12px}.heading h1{font-size:21px}.stats{gap:9px}.stat{padding:12px}.stat strong{font-size:21px}.stat small{font-size:10px}.panel{padding:12px;overflow:hidden}.tablewrap{overflow-x:auto}table{min-width:600px}.formgrid{grid-template-columns:1fr}.span2{grid-column:auto}.productresult{align-items:flex-start;flex-direction:column}.heading{align-items:flex-start}.heading .primary{padding:9px;font-size:12px}}
-@media print{body *{visibility:hidden!important}.tag,.tag *{visibility:visible!important}.tag{position:absolute;left:0;top:0;margin:0;border:0;width:55mm;min-height:30mm;page-break-after:always}}
-</style></head><body><div class="app"><aside class="side"><div class="brand"><div class="gem">◇</div><div><b>LINI JEWELS</b><small>BARCODE & STOCK SYSTEM</small></div></div><div class="navlabel">WORKSPACE</div><nav class="nav" id="nav"><button class="active" data-page="dashboard"><i>▦</i>Dashboard</button><button data-page="products"><i>▤</i>Products</button><button data-page="add"><i>＋</i>Add Product</button><button data-page="scanner"><i>▥</i>Barcode Scanner</button><button data-page="print"><i>▧</i>Print Tags</button><button data-page="inventory"><i>▣</i>Stock Monitoring</button></nav><div class="sidefoot">Lini Jewels & Gold Covering<br>Student demonstration prototype</div></aside><main class="main"><div class="mobilehead"><b>◇ LINI JEWELS</b><select id="mobileNav"><option value="dashboard">Dashboard</option><option value="products">Products</option><option value="add">Add Product</option><option value="scanner">Barcode Scanner</option><option value="print">Print Tags</option><option value="inventory">Stock Monitoring</option></select></div><header class="top"><small>Jewellery Management / <span id="crumb">Dashboard</span></small><span class="user">● Demo Admin</span></header><div class="content"><div id="toast" class="toast hidden"></div><section id="page-dashboard"><div class="heading"><div><h1>Dashboard</h1><p>Welcome to your jewellery inventory workspace.</p></div><button class="primary" onclick="showPage('add')">＋ Add Product</button></div><div class="stats"><div class="stat"><div class="statrow">Total Products <span class="staticon">◇</span></div><strong id="s-products">0</strong><small>Unique product designs</small></div><div class="stat"><div class="statrow">Units in Stock <span class="staticon">▤</span></div><strong id="s-stock">0</strong><small>Total available pieces</small></div><div class="stat"><div class="statrow">Stock Value <span class="staticon">₹</span></div><strong id="s-value">₹0</strong><small>At listed selling price</small></div><div class="stat"><div class="statrow">Low Stock <span class="staticon">!</span></div><strong id="s-low">0</strong><small>At or below threshold</small></div></div><div class="panel"><div class="panelhead"><h2>Recent Products</h2><button class="secondary" onclick="showPage('products')">View all →</button></div><div class="tablewrap"><table><thead><tr><th>Product</th><th>SKU / Barcode</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th></tr></thead><tbody id="recent"></tbody></table></div></div><div class="panel"><div class="panelhead"><h2>Quick Actions</h2></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="secondary" onclick="showPage('add')">＋ Add product</button><button class="secondary" onclick="showPage('scanner')">▥ Scan barcode</button><button class="secondary" onclick="showPage('print')">▧ Print tag</button><button class="secondary" onclick="exportData()">↓ Export backup</button></div><p class="hint">Prototype uses this browser's local storage. Export a backup regularly.</p></div></section>
-<section id="page-products" class="hidden"><div class="heading"><div><h1>Products</h1><p>Manage jewellery items and their barcode IDs.</p></div><button class="primary" onclick="showPage('add')">＋ Add Product</button></div><div class="panel"><div class="panelhead"><h2>Product Catalogue</h2><input id="productSearch" class="search" placeholder="Search name, SKU or category…" oninput="renderProducts()"></div><div class="tablewrap"><table><thead><tr><th>Product</th><th>SKU</th><th>Category</th><th>Cost</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead><tbody id="productRows"></tbody></table></div></div></section>
-<section id="page-add" class="hidden"><div class="heading"><div><h1 id="formTitle">Add Product</h1><p>Enter item details to generate its unique barcode.</p></div></div><div class="panel"><form id="productForm"><div class="formgrid"><div class="field span2"><label>Product Name *</label><input id="p-name" required placeholder="e.g. Antique Jhumka"></div><div class="field"><label>SKU / Product ID *</label><input id="p-sku" required></div><div class="field"><label>Category *</label><select id="p-category"><option>Earrings</option><option>Necklace</option><option>Bangles</option><option>Rings</option><option>Chains</option><option>Anklets</option><option>Pendants</option><option>Other</option></select></div><div class="field"><label>Purchase Cost (₹)</label><input id="p-cost" type="number" min="0" step="0.01" value="0"></div><div class="field"><label>Selling Price (₹) *</label><input id="p-price" required type="number" min="0" step="0.01" value="0"></div><div class="field"><label>Stock Quantity *</label><input id="p-stock" required type="number" min="0" step="1" value="1"></div><div class="field"><label>Low Stock Alert At</label><input id="p-min" type="number" min="0" step="1" value="3"></div><div class="field"><label>Material</label><input id="p-material" value="Gold covering"></div><div class="field"><label>Supplier</label><input id="p-supplier" placeholder="Optional"></div></div><div class="formactions"><button type="button" class="secondary" onclick="showPage('products')">Cancel</button><button class="primary" type="submit">Save Product</button></div></form></div></section>
-<section id="page-scanner" class="hidden"><div class="heading"><div><h1>Barcode Scanner</h1><p>Scan with a USB scanner or enter the product SKU manually.</p></div></div><div class="panel"><div class="panelhead"><h2>Scan Product</h2><span class="pill">Ready</span></div><div class="scanbox"><input id="scanInput" placeholder="Click here, then scan barcode…" autocomplete="off"><button class="primary" onclick="lookupScan()">Find</button></div><p class="hint">Most USB barcode scanners work like a keyboard and type the scanned SKU into this field. Configure the scanner to append Enter after each scan.</p><div id="scanResult"></div></div></section>
-<section id="page-print" class="hidden"><div class="heading"><div><h1>Print Jewellery Tags</h1><p>Generate a printable barcode label for your product.</p></div></div><div class="panel"><div class="field"><label>Select Product</label><select id="printSelect" onchange="renderTag()"></select></div><div class="field" style="margin-top:12px"><label>Number of copies</label><input id="copies" type="number" min="1" max="100" value="1"></div><div id="tagPreview" class="tag"><b>LINI JEWELS</b><div class="pname">Select a product</div></div><div style="text-align:center"><button class="primary" onclick="printTags()">▧ Print Tags</button></div><p class="hint">For best results, set the printer's label size and margins in the browser print dialog. Test barcode readability before using tags on products.</p></div></section>
-<section id="page-inventory" class="hidden"><div class="heading"><div><h1>Stock Monitoring</h1><p>View available quantities and identify items to restock.</p></div><button class="secondary" onclick="exportCSV()">↓ Export CSV</button></div><div class="panel"><div class="panelhead"><h2>Current Stock</h2><input id="stockSearch" class="search" placeholder="Search inventory…" oninput="renderStock()"></div><div class="tablewrap"><table><thead><tr><th>Product</th><th>SKU</th><th>Available</th><th>Alert At</th><th>Status</th><th>Adjustment</th></tr></thead><tbody id="stockRows"></tbody></table></div></div></section>
-</div></main></div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lini Jewels | Barcode & Stock System</title>
+  <!-- Barcode Generation -->
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+  <!-- Camera Barcode Scanner -->
+  <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --ink: #1f1d19;
+      --muted: #6e6a60;
+      --gold: #b38b3f;
+      --gold-dark: #8c6a2b;
+      --gold-light: #f5eedb;
+      --gold-border: #dfcca0;
+      --bg: #f8f6f0;
+      --card: #ffffff;
+      --line: #e8e3d8;
+      --green: #237844;
+      --green-bg: #eaf6ee;
+      --red: #b32d2e;
+      --red-bg: #faeaeb;
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --mono: 'Space Mono', ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app { display: flex; min-height: 100vh; }
+    
+    /* Sidebar */
+    .side {
+      width: 250px;
+      background: #1e1d18;
+      color: #f7f4ea;
+      padding: 24px 16px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 0 8px 22px;
+      border-bottom: 1px solid #38342a;
+    }
+    .gem {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #453b26, #2a2417);
+      border: 1px solid #735c2f;
+      color: #f3d489;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .brand b {
+      display: block;
+      letter-spacing: 2px;
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .brand small {
+      color: #b5ac96;
+      font-size: 10px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .navlabel {
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      color: #8c8473;
+      margin: 24px 10px 8px;
+      font-weight: 700;
+    }
+    .nav button {
+      width: 100%;
+      border: 0;
+      background: none;
+      color: #c9c3b4;
+      text-align: left;
+      padding: 11px 13px;
+      border-radius: 10px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin: 3px 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+    .nav button:hover {
+      background: #312e24;
+      color: #fff;
+    }
+    .nav button.active {
+      background: #413a29;
+      color: #f7d88e;
+      font-weight: 700;
+      box-shadow: inset 3px 0 0 #f7d88e;
+    }
+    .nav i {
+      font-style: normal;
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+    }
+    .sidefoot {
+      margin-top: auto;
+      padding: 16px 10px 6px;
+      border-top: 1px solid #332f25;
+      color: #8c8473;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .sidefoot strong { color: #d0c8b6; }
+
+    /* Main Area */
+    .main { min-width: 0; flex: 1; display: flex; flex-direction: column; }
+    .top {
+      height: 64px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .top small { color: var(--muted); font-weight: 500; }
+    .top b { color: var(--ink); }
+    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .badge-demo {
+      background: var(--gold-light);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-dark);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .content {
+      padding: 28px 32px 60px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .heading h1 {
+      font-size: 26px;
+      font-weight: 800;
+      margin: 0 0 4px;
+      letter-spacing: -0.6px;
+    }
+    .heading p { margin: 0; color: var(--muted); font-size: 13.5px; }
+
+    /* Buttons */
+    button, .btn {
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .primary {
+      background: #25231c;
+      color: #fff;
+      border: 1px solid #25231c;
+      padding: 10px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+    .primary:hover { background: #453c29; border-color: #453c29; }
+    .gold-btn {
+      background: #b38b3f;
+      color: #fff;
+      border: 1px solid #a07a33;
+      padding: 10px 18px;
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+    .gold-btn:hover { background: #96722d; }
+    .secondary {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 9px 15px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .secondary:hover { background: #fbf9f4; border-color: #c9c3b5; }
+    .danger { color: var(--red); }
+    .danger:hover { background: var(--red-bg); }
+
+    /* Panels & Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat, .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .statrow {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+    .staticon { color: var(--gold); font-size: 18px; }
+    .stat strong {
+      display: block;
+      font-size: 26px;
+      font-weight: 800;
+      margin: 10px 0 2px;
+      letter-spacing: -0.6px;
+    }
+    .stat small { color: var(--muted); font-size: 11.5px; }
+    .panel { margin-bottom: 22px; }
+    .panelhead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .panelhead h2 { font-size: 16px; font-weight: 700; margin: 0; }
+    .search {
+      width: min(320px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-family: inherit;
+      font-size: 13px;
+      outline-color: var(--gold);
+    }
+
+    /* Tables */
+    .tablewrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; text-align: left; }
+    th {
+      font-size: 11px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      background: #faf8f3;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #f0eee6;
+      font-size: 13px;
+      vertical-align: middle;
+    }
+    tbody tr:hover td { background: #fdfcf9; }
+    tbody tr:last-child td { border-bottom: 0; }
+    .sku { font-family: var(--mono); color: #6b5f44; font-weight: 700; }
+    .pill {
+      border-radius: 20px;
+      padding: 4px 10px;
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-block;
+    }
+    .pill.low { background: #fff5e0; color: #a16b08; }
+    .pill.out { background: var(--red-bg); color: var(--red); }
+    .actions { display: flex; gap: 6px; }
+    .linkbtn {
+      border: 0;
+      background: none;
+      color: var(--gold-dark);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 8px;
+      border-radius: 6px;
+    }
+    .linkbtn:hover { background: #f5eedb; }
+
+    /* Forms */
+    .formgrid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 12px; color: #575246; font-weight: 700; }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      font-family: inherit;
+      font-size: 13px;
+      outline-color: var(--gold);
+    }
+    .span2 { grid-column: 1 / -1; }
+    .formactions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* Scanner View */
+    .scanner-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+    }
+    .camera-box {
+      background: #141310;
+      border-radius: 14px;
+      padding: 16px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #332f26;
+    }
+    #reader {
+      width: 100% !important;
+      max-width: 480px;
+      border: none !important;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #reader video {
+      border-radius: 8px;
+      width: 100% !important;
+      object-fit: cover;
+    }
+    .scanner-controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .scan-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: #25221b;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+    .dot-live {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .scanned-card {
+      background: #ffffff;
+      border: 2px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 14px;
+      box-shadow: 0 4px 14px rgba(179,139,63,0.12);
+      animation: popIn 0.25s ease-out;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.97); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .scan-history {
+      max-height: 240px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+    .scan-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+    }
+
+    /* Print & Label Section */
+    .print-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .tag-container {
+      background: #ece8de;
+      border: 1px dashed #b8af9c;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+    }
+    .printer-callout {
+      background: #fdfbf7;
+      border: 1px solid var(--gold-border);
+      border-left: 4px solid var(--gold);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    /* PREVIEW TAGS (Real-world jewelry & thermal layouts) */
+    
+    /* 1. Jewellery Foldable Dumbbell / Rat-Tail Tag (50mm x 12mm actual physical size) */
+    .label-preview-dumbbell {
+      width: 320px;
+      height: 90px;
+      background: #ffffff;
+      border: 1px solid #111;
+      display: flex;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      color: #000;
+      font-family: Arial, sans-serif;
+    }
+    .dumbbell-left, .dumbbell-right {
+      flex: 1;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    .dumbbell-mid {
+      width: 30px;
+      border-left: 1px dashed #999;
+      border-right: 1px dashed #999;
+      background: #f7f7f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #777;
+      writing-mode: vertical-rl;
+      letter-spacing: 1px;
+    }
+    .dumbbell-brand { font-size: 10px; font-weight: 800; letter-spacing: 0.5px; }
+    .dumbbell-name { font-size: 9px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dumbbell-sku { font-family: monospace; font-size: 9px; font-weight: bold; }
+    .dumbbell-price { font-size: 12px; font-weight: 900; }
+    .dumbbell-barcode-svg { max-width: 100%; height: 28px; }
+
+    /* 2. Standard Jewellery Thermal Label (38mm x 25mm) */
+    .label-preview-standard {
+      width: 240px;
+      min-height: 155px;
+      background: #fff;
+      border: 1px solid #111;
+      padding: 10px 8px;
+      text-align: center;
+      color: #000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      font-family: Arial, sans-serif;
+    }
+    .tag-brand { font-size: 12px; font-weight: 900; letter-spacing: 1px; }
+    .tag-prod-title { font-size: 11px; font-weight: 700; margin: 3px 0 1px; line-height: 1.2; }
+    .tag-meta { font-size: 9px; color: #333; margin-bottom: 2px; }
+    .tag-barcode { max-width: 100%; height: 42px; margin: 2px 0; }
+    .tag-price-row { font-size: 13px; font-weight: 900; }
+
+    /* 3. Compact Jewellery Label (30mm x 15mm) */
+    .label-preview-compact {
+      width: 210px;
+      min-height: 105px;
+      background: #fff;
+      border: 1px solid #111;
+      padding: 6px;
+      text-align: center;
+      color: #000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
+    }
+    .label-preview-compact .tag-brand { font-size: 10px; }
+    .label-preview-compact .tag-prod-title { font-size: 10px; }
+    .label-preview-compact .tag-barcode { height: 30px; }
+    .label-preview-compact .tag-price-row { font-size: 11px; }
+
+    /* Toasts & Mobile */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      padding: 12px 18px;
+      background: #1e1d18;
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      border-left: 4px solid var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: popIn 0.2s ease;
+    }
+    .hidden { display: none !important; }
+    .mobilehead { display: none; }
+
+    @media (max-width: 900px) {
+      .scanner-layout, .print-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .side { width: 200px; }
+      .content { padding: 20px 16px; }
+      .top { padding: 0 16px; }
+    }
+    @media (max-width: 650px) {
+      .app { display: block; }
+      .side { display: none; }
+      .mobilehead {
+        display: flex;
+        background: #1e1d18;
+        color: #fff;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        position: sticky;
+        top: 0;
+        z-index: 30;
+      }
+      .mobilehead b { letter-spacing: 1.5px; font-size: 14px; }
+      .mobilehead select {
+        background: #38342a;
+        color: #fff;
+        border: 1px solid #57503f;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 13px;
+      }
+      .top { display: none; }
+      .stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .stat { padding: 14px; }
+      .stat strong { font-size: 20px; }
+      .formgrid { grid-template-columns: 1fr; }
+      .span2 { grid-column: auto; }
+    }
+
+    /* PRINT MEDIA STYLES - Specifically tailored for Barcode Label Thermal Printers */
+    @media print {
+      body * { visibility: hidden !important; }
+      #printArea, #printArea * { visibility: visible !important; }
+      #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background: #fff !important;
+      }
+      .print-tag-page {
+        page-break-after: always;
+        break-after: page;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <!-- Desktop Sidebar -->
+  <aside class="side">
+    <div class="brand">
+      <div class="gem">◇</div>
+      <div>
+        <b>LINI JEWELS</b>
+        <small>POS & Barcode Stock</small>
+      </div>
+    </div>
+    
+    <div class="navlabel">MAIN NAVIGATION</div>
+    <nav class="nav" id="nav">
+      <button class="active" data-page="dashboard"><i>▦</i>Dashboard</button>
+      <button data-page="scanner"><i>📷</i>Camera & Barcode Scan</button>
+      <button data-page="print"><i>🏷️</i>Print Tags (Thermal)</button>
+      <button data-page="products"><i>▤</i>Product Catalogue</button>
+      <button data-page="add"><i>＋</i>Add Jewellery Item</button>
+      <button data-page="inventory"><i>▣</i>Stock Monitoring</button>
+    </nav>
+
+    <div class="sidefoot">
+      <strong>Lini Jewels & Gold Covering</strong><br>
+      High-Speed Barcode System<br>
+      Thermal Label Ready (TSC / Zebra)
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Mobile Header -->
+    <div class="mobilehead">
+      <b>◇ LINI JEWELS</b>
+      <select id="mobileNav">
+        <option value="dashboard">Dashboard</option>
+        <option value="scanner">📷 Camera Scanner</option>
+        <option value="print">🏷️ Print Tags</option>
+        <option value="products">Products</option>
+        <option value="add">Add Product</option>
+        <option value="inventory">Stock Monitor</option>
+      </select>
+    </div>
+
+    <!-- Top Bar -->
+    <header class="top">
+      <small>Workspace / <b id="crumb">Dashboard</b></small>
+      <div class="header-actions">
+        <button class="secondary" style="padding:6px 12px;font-size:12px;" onclick="showPage('scanner')">📷 Live Scanner</button>
+        <button class="primary" style="padding:6px 12px;font-size:12px;" onclick="showPage('print')">🏷️ Thermal Print</button>
+        <span class="badge-demo">Demo Ready</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Live Toast Message -->
+      <div id="toast" class="toast hidden"></div>
+
+      <!-- PAGE: DASHBOARD -->
+      <section id="page-dashboard">
+        <div class="heading">
+          <div>
+            <h1>Jewellery Inventory & Barcode Dashboard</h1>
+            <p>Real-time stock tracking, camera scanner, and thermal tag printing for Lini Jewels.</p>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="gold-btn" onclick="showPage('scanner')">📷 Open Camera Scanner</button>
+            <button class="primary" onclick="showPage('add')">＋ Add Product</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="statrow">Total Designs <span class="staticon">◇</span></div>
+            <strong id="s-products">0</strong>
+            <small>Active jewelry designs</small>
+          </div>
+          <div class="stat">
+            <div class="statrow">Total Stock <span class="staticon">▤</span></div>
+            <strong id="s-stock">0</strong>
+            <small>Available physical units</small>
+          </div>
+          <div class="stat">
+            <div class="statrow">Inventory Value <span class="staticon">₹</span></div>
+            <strong id="s-value">₹0</strong>
+            <small>Listed selling price value</small>
+          </div>
+          <div class="stat">
+            <div class="statrow">Low Stock Alerts <span class="staticon">!</span></div>
+            <strong id="s-low" style="color:var(--red);">0</strong>
+            <small>Items requiring restock</small>
+          </div>
+        </div>
+
+        <!-- Quick Client Demo Bar -->
+        <div class="panel" style="background:linear-gradient(135deg, #2b271d, #1c1a14);color:#fff;border-color:#483f2a;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+            <div>
+              <span style="background:#b38b3f;color:#fff;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:0.5px;">CLIENT DEMO READY</span>
+              <h3 style="margin:8px 0 4px;font-size:18px;">Showcase Live Scanning & Printing</h3>
+              <p style="margin:0;color:#c9c3b4;font-size:13px;">Test real phone/webcam camera scanning with instant audio feedback and preview thermal jewellery tag prints.</p>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button class="gold-btn" onclick="showPage('scanner')">📷 Launch Scanner</button>
+              <button class="secondary" style="background:#fff;border:none;" onclick="showPage('print')">🏷️ View Print Tag Engine</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panelhead">
+            <h2>Recent Inventory Items</h2>
+            <button class="secondary" onclick="showPage('products')">View Full Catalogue →</button>
+          </div>
+          <div class="tablewrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Barcode / SKU</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>In Stock</th>
+                  <th>Status</th>
+                  <th>Fast Actions</th>
+                </tr>
+              </thead>
+              <tbody id="recent"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panelhead">
+            <h2>Data Management & Backups</h2>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="secondary" onclick="exportData()">↓ Download JSON Backup</button>
+            <button class="secondary" onclick="exportCSV()">↓ Download Inventory CSV</button>
+            <button class="secondary" onclick="resetDemoData()">↺ Reset Demo Data</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: CAMERA & BARCODE SCANNER (CLIENT DEMO UPGRADED) -->
+      <section id="page-scanner" class="hidden">
+        <div class="heading">
+          <div>
+            <h1>Live Barcode Scanner</h1>
+            <p>Scan real jewelry barcodes using your device camera or USB barcode scanner gun.</p>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button id="toggleAudioBtn" class="secondary" onclick="toggleScannerBeep()">🔊 Sound: ON</button>
+          </div>
+        </div>
+
+        <div class="scanner-layout">
+          <!-- Left Column: Camera Viewfinder & USB input -->
+          <div>
+            <div class="camera-box">
+              <div class="scan-status-bar">
+                <div>
+                  <span class="dot-live"></span>
+                  <span id="cameraStatusText" style="margin-left:6px;font-weight:600;">Camera Ready</span>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <label style="font-size:11px;color:#c0baa8;">Camera:</label>
+                  <select id="cameraSelect" style="background:#2e2a21;color:#fff;border:1px solid #4a4435;padding:3px 6px;border-radius:4px;font-size:11px;"></select>
+                </div>
+              </div>
+
+              <!-- Video / Viewfinder element -->
+              <div id="reader"></div>
+
+              <div class="scanner-controls">
+                <button id="startCamBtn" class="gold-btn" onclick="startCameraScanner()">▶ Start Camera Scanner</button>
+                <button id="stopCamBtn" class="secondary hidden" style="background:#3b362a;color:#fff;border-color:#574f3d;" onclick="stopCameraScanner()">⏹ Stop Camera</button>
+                <button id="torchBtn" class="secondary hidden" style="background:#3b362a;color:#fff;border-color:#574f3d;" onclick="toggleTorch()">🔦 Torch</button>
+              </div>
+            </div>
+
+            <!-- USB Scanner Gun / Manual Input Fallback -->
+            <div class="panel" style="margin-top:18px;">
+              <div class="panelhead">
+                <h2>USB Barcode Gun / Manual SKU</h2>
+                <span class="pill">Keyboard Ready</span>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <input id="scanInput" class="search" style="flex:1;" placeholder="Scan with USB Gun or type SKU (e.g. LJ-000125)..." autocomplete="off">
+                <button class="primary" onclick="lookupScan()">Lookup</button>
+              </div>
+              <p style="color:var(--muted);font-size:11.5px;margin:8px 0 0;">
+                Connect any standard USB/Bluetooth handheld barcode scanner. It automatically enters the code and triggers search.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: Scanned Product Display & Live Log -->
+          <div>
+            <div class="panel">
+              <div class="panelhead">
+                <h2>Scan Result</h2>
+                <span id="scanCountBadge" class="pill" style="background:var(--gold-light);color:var(--gold-dark);">0 Scans Today</span>
+              </div>
+
+              <div id="scanResultContainer">
+                <div style="text-align:center;padding:35px 20px;color:var(--muted);border:1px dashed var(--line);border-radius:10px;">
+                  <div style="font-size:32px;margin-bottom:8px;">📷</div>
+                  <strong style="display:block;color:var(--ink);margin-bottom:4px;">No Barcode Scanned Yet</strong>
+                  <span>Aim your camera at any jewelry tag or type a SKU to see the item details instantly.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panelhead">
+                <h2>Live Demo Scan History</h2>
+                <button class="linkbtn" onclick="clearScanHistory()">Clear</button>
+              </div>
+              <div id="scanHistoryList" class="scan-history">
+                <div style="text-align:center;color:var(--muted);padding:18px 0;font-size:12px;">Scan items will appear here sequentially.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: PRINT JEWELLERY TAGS (THERMAL PRINTER READY) -->
+      <section id="page-print" class="hidden">
+        <div class="heading">
+          <div>
+            <h1>Barcode Tag Printing (Thermal Printer Ready)</h1>
+            <p>Generate millimeter-accurate jewellery tags formatted for thermal label printers (TSC, Zebra, TVS, Xprinter).</p>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="secondary" onclick="printCalibrationTest()">Test Alignment Grid</button>
+            <button class="primary" onclick="printTagsNow()">🏷️ Print Tag Now</button>
+          </div>
+        </div>
+
+        <div class="printer-callout">
+          <strong>💡 Thermal Printer Optimization:</strong> This layout renders pure vector 1-bit monochrome Code128 barcodes formatted specifically for direct thermal transfer barcode machines. Select your tag size below to calibrate paper feed margins.
+        </div>
+
+        <div class="print-grid">
+          <!-- Configuration -->
+          <div class="panel">
+            <div class="panelhead">
+              <h2>Label & Printer Setup</h2>
+            </div>
+            
+            <div class="field" style="margin-bottom:14px;">
+              <label>Select Jewellery Item *</label>
+              <select id="printSelect" onchange="updateTagPreview()"></select>
+            </div>
+
+            <div class="field" style="margin-bottom:14px;">
+              <label>Label / Tag Type *</label>
+              <select id="labelTypeSelect" onchange="updateTagPreview()">
+                <option value="dumbbell">Jewellery Dumbbell Tag (50mm × 12mm - Foldable)</option>
+                <option value="standard">Standard Jewellery Thermal Sticker (38mm × 25mm / 1.5" × 1")</option>
+                <option value="wide">Wide Box Thermal Label (50mm × 25mm / 2" × 1")</option>
+                <option value="compact">Mini Earring / Ring Tag (30mm × 15mm)</option>
+                <option value="a4">Standard A4 Sheet (24 labels per page)</option>
+              </select>
+            </div>
+
+            <div class="formgrid" style="margin-bottom:14px;">
+              <div class="field">
+                <label>Number of Copies</label>
+                <input id="printCopies" type="number" min="1" max="500" value="1">
+              </div>
+              <div class="field">
+                <label>Barcode Density</label>
+                <select id="barcodeDensity" onchange="updateTagPreview()">
+                  <option value="high">High Contrast (203 DPI / 300 DPI)</option>
+                  <option value="normal">Standard Density</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field" style="margin-bottom:18px;">
+              <label>Extra Details on Tag</label>
+              <div style="display:flex;gap:16px;margin-top:6px;font-size:12px;">
+                <label><input type="checkbox" id="showPriceCheck" checked onchange="updateTagPreview()"> Show Price (₹)</label>
+                <label><input type="checkbox" id="showMaterialCheck" checked onchange="updateTagPreview()"> Show Material</label>
+                <label><input type="checkbox" id="showBrandCheck" checked onchange="updateTagPreview()"> Show Shop Name</label>
+              </div>
+            </div>
+
+            <div style="padding-top:14px;border-top:1px solid var(--line);display:flex;gap:10px;">
+              <button class="gold-btn" style="flex:1;" onclick="printTagsNow()">🏷️ Print Selected Tag</button>
+              <button class="secondary" onclick="printAllInStock()">Print All In-Stock</button>
+            </div>
+          </div>
+
+          <!-- Live Visual Preview -->
+          <div class="panel">
+            <div class="panelhead">
+              <h2>Real-time Tag Preview</h2>
+              <span id="labelDimensionsBadge" class="pill" style="font-family:var(--mono);">50mm × 12mm</span>
+            </div>
+            
+            <div class="tag-container">
+              <div id="tagPreviewWrapper">
+                <!-- Injected via JavaScript based on selected format -->
+              </div>
+            </div>
+
+            <div style="margin-top:12px;display:flex;justify-content:space-between;color:var(--muted);font-size:11.5px;">
+              <span>Barcode Standard: <b>CODE128</b></span>
+              <span>Printer compatibility: <b>TSC / Zebra / TVS / Xprinter</b></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: PRODUCT CATALOGUE -->
+      <section id="page-products" class="hidden">
+        <div class="heading">
+          <div>
+            <h1>Product Catalogue</h1>
+            <p>Manage all jewellery pieces, pricing, SKUs, and stock quantities.</p>
+          </div>
+          <button class="primary" onclick="showPage('add')">＋ Add New Item</button>
+        </div>
+
+        <div class="panel">
+          <div class="panelhead">
+            <h2>Jewellery Products</h2>
+            <input id="productSearch" class="search" placeholder="Search product name, SKU or category…" oninput="renderProducts()">
+          </div>
+          <div class="tablewrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product Name & Material</th>
+                  <th>SKU / Barcode</th>
+                  <th>Category</th>
+                  <th>Cost (₹)</th>
+                  <th>Selling Price (₹)</th>
+                  <th>Stock Qty</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: ADD / EDIT PRODUCT -->
+      <section id="page-add" class="hidden">
+        <div class="heading">
+          <div>
+            <h1 id="formTitle">Add Jewellery Item</h1>
+            <p>Enter jewellery details to generate its unique SKU and barcode.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <form id="productForm">
+            <div class="formgrid">
+              <div class="field span2">
+                <label>Jewellery Item Name *</label>
+                <input id="p-name" required placeholder="e.g. Traditional Matte Finish Jhumka">
+              </div>
+
+              <div class="field">
+                <label>SKU / Barcode ID *</label>
+                <input id="p-sku" required placeholder="LJ-000125">
+              </div>
+
+              <div class="field">
+                <label>Category *</label>
+                <select id="p-category">
+                  <option>Earrings / Jhumkas</option>
+                  <option>Necklace & Harams</option>
+                  <option>Bangles & Bracelets</option>
+                  <option>Finger Rings</option>
+                  <option>Chains & Mangalsutra</option>
+                  <option>Anklets / Payal</option>
+                  <option>Pendants & Lockers</option>
+                  <option>Hip Belts / Oddiyanam</option>
+                  <option>Other Jewellery</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Purchase Cost (₹)</label>
+                <input id="p-cost" type="number" min="0" step="0.01" value="0">
+              </div>
+
+              <div class="field">
+                <label>Selling Price (₹) *</label>
+                <input id="p-price" required type="number" min="0" step="0.01" value="0">
+              </div>
+
+              <div class="field">
+                <label>Stock Quantity *</label>
+                <input id="p-stock" required type="number" min="0" step="1" value="1">
+              </div>
+
+              <div class="field">
+                <label>Low Stock Alert Threshold</label>
+                <input id="p-min" type="number" min="0" step="1" value="3">
+              </div>
+
+              <div class="field">
+                <label>Material / Purity</label>
+                <input id="p-material" value="Gold Covering / 1 Gram Gold">
+              </div>
+
+              <div class="field">
+                <label>Supplier / Batch Info</label>
+                <input id="p-supplier" placeholder="Optional supplier code">
+              </div>
+            </div>
+
+            <div class="formactions">
+              <button type="button" class="secondary" onclick="showPage('products')">Cancel</button>
+              <button class="primary" type="submit">Save Product & Generate Barcode</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- PAGE: STOCK MONITORING -->
+      <section id="page-inventory" class="hidden">
+        <div class="heading">
+          <div>
+            <h1>Stock Monitoring & Replenishment</h1>
+            <p>Real-time inventory levels, reorder status, and fast adjustments.</p>
+          </div>
+          <button class="secondary" onclick="exportCSV()">↓ Export Stock Sheet (CSV)</button>
+        </div>
+
+        <div class="panel">
+          <div class="panelhead">
+            <h2>Current Stock Status</h2>
+            <input id="stockSearch" class="search" placeholder="Filter inventory..." oninput="renderStock()">
+          </div>
+          <div class="tablewrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>SKU</th>
+                  <th>Current Stock</th>
+                  <th>Alert Level</th>
+                  <th>Stock Status</th>
+                  <th>Quick Adjustment</th>
+                </tr>
+              </thead>
+              <tbody id="stockRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- Hidden container for clean print output (rendered during window.print) -->
+<div id="printArea" class="hidden"></div>
+
 <script>
-const KEY='lini-jewels-prototype-v1';let products=[],editing=null;const demo=[{id:'1',name:'Antique Jhumka',sku:'LJ-JH-000125',category:'Earrings',cost:420,price:750,stock:24,min:3,material:'Gold covering',supplier:'Demo Supplier'},{id:'2',name:'Gold Covering Necklace',sku:'LJ-NK-000126',category:'Necklace',cost:1100,price:1850,stock:15,min:3,material:'Gold covering',supplier:'Demo Supplier'},{id:'3',name:'Gold Plated Bangles',sku:'LJ-BG-000127',category:'Bangles',cost:700,price:1200,stock:3,min:3,material:'Gold plated',supplier:'Demo Supplier'},{id:'4',name:'Temple Pendant',sku:'LJ-PD-000128',category:'Pendants',cost:350,price:650,stock:8,min:2,material:'Gold covering',supplier:'Demo Supplier'}];function load(){try{products=JSON.parse(localStorage.getItem(KEY))||demo; if(!localStorage.getItem(KEY))save()}catch(e){products=demo}}function save(){localStorage.setItem(KEY,JSON.stringify(products));renderAll()}function money(n){return '₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2})}function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function showPage(p){document.querySelectorAll('[id^="page-"]').forEach(e=>e.classList.add('hidden'));document.getElementById('page-'+p).classList.remove('hidden');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));document.getElementById('crumb').textContent=({dashboard:'Dashboard',products:'Products',add:editing?'Edit Product':'Add Product',scanner:'Barcode Scanner',print:'Print Tags',inventory:'Stock Monitoring'})[p];document.getElementById('mobileNav').value=p;if(p==='print')renderSelect();if(p==='products')renderProducts();if(p==='inventory')renderStock();if(p==='scanner')setTimeout(()=>document.getElementById('scanInput').focus(),80);if(p==='add'&&!editing)document.getElementById('p-sku').value=nextSku()}document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{editing=null;showPage(b.dataset.page)});document.getElementById('mobileNav').onchange=e=>{editing=null;showPage(e.target.value)};function nextSku(){let n=products.reduce((m,p)=>Math.max(m,Number((p.sku.match(/(\d+)$/)||[])[1]||0)),0)+1;return 'LJ-'+String(n).padStart(6,'0')}function renderAll(){let count=products.length,units=products.reduce((s,p)=>s+Number(p.stock),0),value=products.reduce((s,p)=>s+Number(p.stock)*Number(p.price),0),low=products.filter(p=>Number(p.stock)<=Number(p.min)).length;document.getElementById('s-products').textContent=count;document.getElementById('s-stock').textContent=units;document.getElementById('s-value').textContent=money(value);document.getElementById('s-low').textContent=low;document.getElementById('recent').innerHTML=products.slice(-5).reverse().map(p=>`<tr><td><b>${esc(p.name)}</b></td><td class="sku">${esc(p.sku)}</td><td>${esc(p.category)}</td><td>${money(p.price)}</td><td>${p.stock}</td><td><span class="pill ${p.stock<=p.min?'low':''}">${p.stock<=0?'Out of stock':p.stock<=p.min?'Low stock':'Available'}</span></td></tr>`).join('')||'<tr><td colspan="6" class="empty">No products yet. Add your first item.</td></tr>';renderProducts();renderStock();renderSelect()}function renderProducts(){let q=(document.getElementById('productSearch')?.value||'').toLowerCase(),arr=products.filter(p=>(p.name+p.sku+p.category).toLowerCase().includes(q));document.getElementById('productRows').innerHTML=arr.map(p=>`<tr><td><b>${esc(p.name)}</b><br><small class="hint">${esc(p.material||'')}</small></td><td class="sku">${esc(p.sku)}</td><td>${esc(p.category)}</td><td>${money(p.cost)}</td><td>${money(p.price)}</td><td>${p.stock}</td><td><div class="actions"><button class="linkbtn" onclick="editProduct('${p.id}')">Edit</button><button class="linkbtn danger" onclick="removeProduct('${p.id}')">Delete</button><button class="linkbtn" onclick="quickPrint('${p.id}')">Tag</button></div></td></tr>`).join('')||'<tr><td colspan="7" class="empty">No matching products found.</td></tr>'}function renderStock(){let q=(document.getElementById('stockSearch')?.value||'').toLowerCase();document.getElementById('stockRows').innerHTML=products.filter(p=>(p.name+p.sku).toLowerCase().includes(q)).map(p=>`<tr><td><b>${esc(p.name)}</b></td><td class="sku">${esc(p.sku)}</td><td>${p.stock}</td><td>${p.min}</td><td><span class="pill ${p.stock<=p.min?'low':''}">${p.stock<=0?'Out of stock':p.stock<=p.min?'Restock soon':'Available'}</span></td><td><div class="actions"><button class="linkbtn" onclick="adjust('${p.id}',-1)">−1</button><button class="linkbtn" onclick="adjust('${p.id}',1)">＋1</button></div></td></tr>`).join('')||'<tr><td colspan="6" class="empty">No stock records.</td></tr>'}function renderSelect(){let el=document.getElementById('printSelect'),old=el.value;el.innerHTML=products.map(p=>`<option value="${p.id}">${esc(p.name)} — ${esc(p.sku)}</option>`).join('');if(products.some(p=>p.id===old))el.value=old;renderTag()}function renderTag(){let p=products.find(x=>x.id===document.getElementById('printSelect').value),el=document.getElementById('tagPreview');if(!p){el.innerHTML='No products available';return}el.innerHTML=`<b>LINI JEWELS</b><div class="pname">${esc(p.name)}</div><div style="font-size:10px">${esc(p.sku)}</div><svg id="barcode"></svg><div class="price">${money(p.price)}</div>`;if(window.JsBarcode)try{JsBarcode('#barcode',p.sku,{format:'CODE128',displayValue:false,height:40,margin:2,width:1.4})}catch(e){el.insertAdjacentHTML('beforeend','<small>Barcode preview unavailable</small>')}}function lookupScan(){let val=document.getElementById('scanInput').value.trim().toUpperCase(),p=products.find(x=>x.sku.toUpperCase()===val),r=document.getElementById('scanResult');if(!p){r.innerHTML='<div class="productresult"><b>Product not found</b><span class="hint">Check the SKU or add this product first.</span></div>';return}r.innerHTML=`<div class="productresult"><div><b>${esc(p.name)}</b><div class="hint">${esc(p.category)} · ${esc(p.sku)}</div><div style="margin-top:9px;font-size:20px;font-weight:700">${money(p.price)}</div><div class="hint">${p.stock} pieces in stock</div></div><span class="pill ${p.stock<=p.min?'low':''}">${p.stock<=p.min?'Low stock':'Available'}</span></div>`}document.getElementById('scanInput').addEventListener('keydown',e=>{if(e.key==='Enter')lookupScan()});document.getElementById('productForm').onsubmit=e=>{e.preventDefault();let p={id:editing||String(Date.now()),name:document.getElementById('p-name').value.trim(),sku:document.getElementById('p-sku').value.trim().toUpperCase(),category:document.getElementById('p-category').value,cost:Number(document.getElementById('p-cost').value),price:Number(document.getElementById('p-price').value),stock:Number(document.getElementById('p-stock').value),min:Number(document.getElementById('p-min').value),material:document.getElementById('p-material').value.trim(),supplier:document.getElementById('p-supplier').value.trim()};if(products.some(x=>x.sku===p.sku&&x.id!==p.id)){alert('This SKU already exists. Please use a unique SKU.');return}if(editing)products=products.map(x=>x.id===editing?p:x);else products.push(p);save();editing=null;document.getElementById('productForm').reset();document.getElementById('p-cost').value=0;document.getElementById('p-stock').value=1;document.getElementById('p-min').value=3;document.getElementById('p-material').value='Gold covering';showPage('products');notify('Product saved successfully.')};function editProduct(id){let p=products.find(x=>x.id===id);if(!p)return;editing=id;showPage('add');document.getElementById('formTitle').textContent='Edit Product';for(let [k,id2] of Object.entries({name:'p-name',sku:'p-sku',category:'p-category',cost:'p-cost',price:'p-price',stock:'p-stock',min:'p-min',material:'p-material',supplier:'p-supplier'}))document.getElementById(id2).value=p[k]??''}function removeProduct(id){let p=products.find(x=>x.id===id);if(p&&confirm('Delete '+p.name+' from this prototype?')){products=products.filter(x=>x.id!==id);save();notify('Product deleted.')}}function adjust(id,d){let p=products.find(x=>x.id===id);if(p){if(p.stock+d<0){alert('Stock cannot be negative.');return}p.stock+=d;save()}}function quickPrint(id){showPage('print');document.getElementById('printSelect').value=id;renderTag()}function printTags(){let n=Math.min(100,Math.max(1,Number(document.getElementById('copies').value)||1)),tag=document.getElementById('tagPreview'),old=tag.innerHTML;let copies=Array.from({length:n},()=>`<div class="tag">${old}</div>`).join('');let w=window.open('','_blank','width=500,height=700');if(!w){alert('Please allow popups to print tags.');return}w.document.write(`<!doctype html><html><head><title>Lini Jewellery Tags</title><style>body{margin:0;font-family:Arial}.tag{width:55mm;min-height:30mm;box-sizing:border-box;border:1px dashed #aaa;padding:3mm;text-align:center;page-break-after:always}.tag b{color:#967339;font-size:12px;letter-spacing:1px}.pname{font-weight:bold;font-size:11px;margin:4px}.tag svg{height:12mm;max-width:100%}.price{font-weight:bold;font-size:12px}@page{margin:2mm}</style></head><body>${copies}<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"><\/script><script>window.onload=()=>{document.querySelectorAll('svg').forEach(s=>{let v=s.parentElement.querySelector('div:nth-child(2)')?.textContent||'';try{JsBarcode(s,v,{format:'CODE128',displayValue:false,height:35,margin:1,width:1.2})}catch(e){}});setTimeout(()=>window.print(),400)};<\/script></body></html>`);w.document.close()}function notify(s){let t=document.getElementById('toast');t.textContent=s;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2500)}function exportData(){let blob=new Blob([JSON.stringify({shop:'Lini Jewels & Gold Covering',exportedAt:new Date().toISOString(),products},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='lini-jewels-backup.json';a.click();URL.revokeObjectURL(a.href)}function exportCSV(){let rows=[['SKU','Product','Category','Cost','Price','Stock','Low Stock At'],...products.map(p=>[p.sku,p.name,p.category,p.cost,p.price,p.stock,p.min])],csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='lini-jewels-inventory.csv';a.click();URL.revokeObjectURL(a.href)}load();renderAll();
-</script></body></html>
+// STORAGE & DEMO PRODUCTS
+const STORAGE_KEY = 'lini_jewels_v2_system';
+let products = [];
+let editingId = null;
+let html5QrCode = null;
+let isCameraScanning = false;
+let scannerBeepEnabled = true;
+let scanCount = 0;
+let lastScannedSku = null;
+let lastScanTimestamp = 0;
+let scanHistory = [];
+
+const DEFAULT_PRODUCTS = [
+  {
+    id: '1',
+    name: 'Antique Peacock Jhumka',
+    sku: 'LJ-000125',
+    category: 'Earrings / Jhumkas',
+    cost: 450,
+    price: 850,
+    stock: 28,
+    min: 4,
+    material: '1 Gram Gold Plated',
+    supplier: 'Chennai Crafts'
+  },
+  {
+    id: '2',
+    name: 'Kundan Bridal Haram Necklace',
+    sku: 'LJ-000126',
+    category: 'Necklace & Harams',
+    cost: 1600,
+    price: 2950,
+    stock: 12,
+    min: 3,
+    material: 'Gold Covering with Ruby',
+    supplier: 'Madurai Jewels'
+  },
+  {
+    id: '3',
+    name: 'Traditional Temple Bangles (Set of 4)',
+    sku: 'LJ-000127',
+    category: 'Bangles & Bracelets',
+    cost: 850,
+    price: 1550,
+    stock: 3,
+    min: 4,
+    material: 'Micro Gold Plated',
+    supplier: 'Coimbatore Art'
+  },
+  {
+    id: '4',
+    name: 'Lakshmi Deity Temple Pendant',
+    sku: 'LJ-000128',
+    category: 'Pendants & Lockers',
+    cost: 320,
+    price: 680,
+    stock: 9,
+    min: 2,
+    material: 'Gold Covering',
+    supplier: 'Chennai Crafts'
+  },
+  {
+    id: '5',
+    name: 'Floral Adjustable Ring',
+    sku: 'LJ-000129',
+    category: 'Finger Rings',
+    cost: 180,
+    price: 390,
+    stock: 18,
+    min: 5,
+    material: 'Gold Plated CZ Stone',
+    supplier: 'Salem Jewels'
+  }
+];
+
+// INITIALIZATION
+function init() {
+  loadData();
+  setupNavigation();
+  setupUsbScanner();
+  renderAll();
+  initCameras();
+}
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    products = raw ? JSON.parse(raw) : DEFAULT_PRODUCTS;
+    if (!raw) saveData();
+  } catch (e) {
+    products = DEFAULT_PRODUCTS;
+  }
+}
+
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+  renderAll();
+}
+
+function resetDemoData() {
+  if (confirm("Reset to sample jewellery demo items?")) {
+    products = DEFAULT_PRODUCTS;
+    saveData();
+    showToast("Demo data restored.");
+  }
+}
+
+// NAVIGATION
+function setupNavigation() {
+  document.querySelectorAll('#nav button').forEach(btn => {
+    btn.onclick = () => {
+      editingId = null;
+      showPage(btn.dataset.page);
+    };
+  });
+
+  const mob = document.getElementById('mobileNav');
+  if (mob) {
+    mob.onchange = e => {
+      editingId = null;
+      showPage(e.target.value);
+    };
+  }
+}
+
+function showPage(pageId) {
+  // If leaving scanner page, we don't automatically stop camera unless needed
+  document.querySelectorAll('[id^="page-"]').forEach(el => el.classList.add('hidden'));
+  const target = document.getElementById('page-' + pageId);
+  if (target) target.classList.remove('hidden');
+
+  document.querySelectorAll('#nav button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.page === pageId);
+  });
+
+  const titles = {
+    dashboard: 'Dashboard',
+    scanner: 'Camera & Barcode Scan',
+    print: 'Print Tags (Thermal)',
+    products: 'Product Catalogue',
+    add: editingId ? 'Edit Jewellery Item' : 'Add Jewellery Item',
+    inventory: 'Stock Monitoring'
+  };
+  document.getElementById('crumb').textContent = titles[pageId] || 'Workspace';
+  if (document.getElementById('mobileNav')) document.getElementById('mobileNav').value = pageId;
+
+  if (pageId === 'print') {
+    populatePrintSelect();
+    updateTagPreview();
+  }
+  if (pageId === 'products') renderProducts();
+  if (pageId === 'inventory') renderStock();
+  if (pageId === 'scanner') {
+    setTimeout(() => {
+      const inp = document.getElementById('scanInput');
+      if (inp) inp.focus();
+    }, 100);
+  }
+  if (pageId === 'add' && !editingId) {
+    document.getElementById('p-sku').value = generateNextSku();
+  }
+}
+
+function generateNextSku() {
+  let highest = 124;
+  products.forEach(p => {
+    const match = (p.sku || '').match(/(\d+)$/);
+    if (match) {
+      const num = parseInt(match[1], 10);
+      if (num > highest) highest = num;
+    }
+  });
+  return 'LJ-' + String(highest + 1).padStart(6, '0');
+}
+
+// FORMATTERS & UTILS
+function money(val) {
+  return '₹' + Number(val || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 });
+}
+
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.innerHTML = `<span>✓</span> <span>${escapeHtml(msg)}</span>`;
+  t.classList.remove('hidden');
+  setTimeout(() => t.classList.add('hidden'), 2800);
+}
+
+// SOUND EFFECTS (Web Audio API POS Beep)
+function playBeep() {
+  if (!scannerBeepEnabled) return;
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1800, ctx.currentTime); // Crisp scanner frequency
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.12);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.12);
+    if (navigator.vibrate) navigator.vibrate(60);
+  } catch (e) {
+    // AudioContext blocked or not supported
+  }
+}
+
+function toggleScannerBeep() {
+  scannerBeepEnabled = !scannerBeepEnabled;
+  document.getElementById('toggleAudioBtn').textContent = scannerBeepEnabled ? '🔊 Sound: ON' : '🔇 Sound: OFF';
+  showToast(scannerBeepEnabled ? 'Scanner beep enabled' : 'Scanner beep muted');
+}
+
+// ==========================================
+// CAMERA SCANNER ENGINE (Html5Qrcode)
+// ==========================================
+async function initCameras() {
+  const select = document.getElementById('cameraSelect');
+  if (!select) return;
+  
+  if (typeof Html5Qrcode === 'undefined') {
+    select.innerHTML = '<option>Camera engine loading...</option>';
+    return;
+  }
+
+  try {
+    const devices = await Html5Qrcode.getCameras();
+    if (devices && devices.length) {
+      select.innerHTML = '';
+      devices.forEach((cam, idx) => {
+        const opt = document.createElement('option');
+        opt.value = cam.id;
+        opt.textContent = cam.label || `Camera ${idx + 1}`;
+        // Prefer back / environment camera for mobile
+        if (/back|rear|environment/i.test(cam.label)) {
+          opt.selected = true;
+        }
+        select.appendChild(opt);
+      });
+    } else {
+      select.innerHTML = '<option value="">No cameras detected</option>';
+    }
+  } catch (err) {
+    select.innerHTML = '<option value="">Camera permission needed</option>';
+  }
+}
+
+async function startCameraScanner() {
+  const readerEl = document.getElementById('reader');
+  if (!readerEl) return;
+
+  if (typeof Html5Qrcode === 'undefined') {
+    alert('Barcode camera library is still downloading. Please check internet connection.');
+    return;
+  }
+
+  if (isCameraScanning) return;
+
+  const select = document.getElementById('cameraSelect');
+  const cameraId = select ? select.value : null;
+
+  try {
+    html5QrCode = new Html5Qrcode("reader");
+    const config = {
+      fps: 15,
+      qrbox: { width: 280, height: 160 },
+      aspectRatio: 1.777778,
+      formatsToSupport: [
+        Html5QrcodeSupportedFormats.CODE_128,
+        Html5QrcodeSupportedFormats.EAN_13,
+        Html5QrcodeSupportedFormats.UPC_A,
+        Html5QrcodeSupportedFormats.CODE_39,
+        Html5QrcodeSupportedFormats.QR_CODE
+      ]
+    };
+
+    const cameraConfig = cameraId ? { deviceId: { exact: cameraId } } : { facingMode: "environment" };
+
+    await html5QrCode.start(
+      cameraConfig,
+      config,
+      onBarcodeDetected,
+      () => {} // silent scan frame error
+    );
+
+    isCameraScanning = true;
+    document.getElementById('startCamBtn').classList.add('hidden');
+    document.getElementById('stopCamBtn').classList.remove('hidden');
+    document.getElementById('cameraStatusText').textContent = 'Scanning live...';
+    document.getElementById('cameraStatusText').style.color = '#22c55e';
+    showToast('Camera active. Aim at barcode.');
+  } catch (err) {
+    console.error('Camera start failed:', err);
+    alert('Camera error: ' + (err.message || 'Please grant camera access in browser permissions.'));
+  }
+}
+
+async function stopCameraScanner() {
+  if (html5QrCode && isCameraScanning) {
+    try {
+      await html5QrCode.stop();
+      html5QrCode.clear();
+    } catch (e) {
+      console.error(e);
+    }
+    isCameraScanning = false;
+    document.getElementById('startCamBtn').classList.remove('hidden');
+    document.getElementById('stopCamBtn').classList.add('hidden');
+    document.getElementById('cameraStatusText').textContent = 'Camera Paused';
+    document.getElementById('cameraStatusText').style.color = '#c0baa8';
+    showToast('Camera scanner stopped.');
+  }
+}
+
+function onBarcodeDetected(decodedText) {
+  const code = (decodedText || '').trim();
+  const now = Date.now();
+
+  // Debounce duplicate scans within 1.5 seconds
+  if (code === lastScannedSku && (now - lastScanTimestamp) < 1500) {
+    return;
+  }
+
+  lastScannedSku = code;
+  lastScanTimestamp = now;
+  playBeep();
+  processScannedCode(code);
+}
+
+// Manual / USB Scanner handler
+function setupUsbScanner() {
+  const input = document.getElementById('scanInput');
+  if (!input) return;
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      lookupScan();
+    }
+  });
+}
+
+function lookupScan() {
+  const input = document.getElementById('scanInput');
+  const code = (input.value || '').trim();
+  if (!code) {
+    alert('Please enter or scan a barcode SKU first.');
+    return;
+  }
+  playBeep();
+  processScannedCode(code);
+  input.value = '';
+}
+
+function processScannedCode(code) {
+  scanCount++;
+  document.getElementById('scanCountBadge').textContent = `${scanCount} Scans Today`;
+
+  const found = products.find(p => p.sku.toUpperCase() === code.toUpperCase() || p.name.toLowerCase() === code.toLowerCase());
+  const container = document.getElementById('scanResultContainer');
+
+  const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+  if (found) {
+    container.innerHTML = `
+      <div class="scanned-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+          <div>
+            <span class="pill ${found.stock <= found.min ? 'low' : ''}" style="margin-bottom:6px;">
+              ${found.stock <= 0 ? 'Out of Stock' : (found.stock <= found.min ? 'Low Stock Alert' : 'In Stock')}
+            </span>
+            <h3 style="margin:4px 0 2px;font-size:18px;font-weight:800;color:var(--ink);">${escapeHtml(found.name)}</h3>
+            <div style="font-family:var(--mono);color:var(--gold-dark);font-size:13px;font-weight:700;">${escapeHtml(found.sku)}</div>
+            <div style="color:var(--muted);font-size:12px;margin-top:2px;">Category: ${escapeHtml(found.category)} · Purity: ${escapeHtml(found.material || 'Gold Covering')}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:22px;font-weight:900;color:var(--ink);">${money(found.price)}</div>
+            <div style="font-size:12px;color:var(--muted);">Cost: ${money(found.cost)}</div>
+            <strong style="font-size:14px;color:${found.stock <= found.min ? 'var(--red)' : 'var(--green)'};display:block;margin-top:4px;">
+              ${found.stock} units left
+            </strong>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="primary" style="background:var(--green);border-color:var(--green);" onclick="adjustStock('${found.id}', -1, 'Sold 1 unit')">
+            −1 Sold Unit
+          </button>
+          <button class="secondary" onclick="adjustStock('${found.id}', 1, 'Restocked 1 unit')">
+            ＋1 Restock
+          </button>
+          <button class="secondary" onclick="quickPrintTag('${found.id}')">
+            🏷️ Print Tag
+          </button>
+          <button class="linkbtn" onclick="editProduct('${found.id}')">
+            Edit Details
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Add to history
+    addScanHistoryItem(found.name, found.sku, found.price, timestamp, true);
+    showToast(`Scanned: ${found.name}`);
+  } else {
+    container.innerHTML = `
+      <div class="scanned-card" style="border-color:var(--red);background:#fff9f9;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:24px;color:var(--red);">⚠️</span>
+          <div>
+            <strong style="display:block;color:var(--red);font-size:15px;">Item Not Found for SKU: ${escapeHtml(code)}</strong>
+            <span style="color:var(--muted);font-size:12px;">This barcode is not in your catalogue yet. Would you like to register it?</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:8px;">
+          <button class="primary" onclick="quickRegisterSku('${escapeHtml(code)}')">＋ Register As New Item</button>
+        </div>
+      </div>
+    `;
+    addScanHistoryItem('Unregistered Barcode', code, 0, timestamp, false);
+  }
+}
+
+function addScanHistoryItem(name, sku, price, time, success) {
+  scanHistory.unshift({ name, sku, price, time, success });
+  if (scanHistory.length > 20) scanHistory.pop();
+  renderScanHistory();
+}
+
+function renderScanHistory() {
+  const el = document.getElementById('scanHistoryList');
+  if (!scanHistory.length) {
+    el.innerHTML = '<div style="text-align:center;color:var(--muted);padding:18px 0;font-size:12px;">Scan items will appear here sequentially.</div>';
+    return;
+  }
+  el.innerHTML = scanHistory.map(item => `
+    <div class="scan-item">
+      <div>
+        <strong style="color:${item.success ? 'var(--ink)' : 'var(--red)'};">${escapeHtml(item.name)}</strong>
+        <span style="font-family:var(--mono);color:var(--muted);margin-left:6px;font-size:11px;">${escapeHtml(item.sku)}</span>
+      </div>
+      <div style="text-align:right;">
+        <span style="font-weight:700;">${item.price ? money(item.price) : '—'}</span>
+        <small style="color:var(--muted);display:block;font-size:10px;">${item.time}</small>
+      </div>
+    </div>
+  `).join('');
+}
+
+function clearScanHistory() {
+  scanHistory = [];
+  renderScanHistory();
+}
+
+function quickRegisterSku(sku) {
+  editingId = null;
+  showPage('add');
+  document.getElementById('p-sku').value = sku;
+  document.getElementById('p-name').focus();
+}
+
+// ==========================================
+// THERMAL BARCODE TAG PRINT ENGINE
+// ==========================================
+function populatePrintSelect() {
+  const sel = document.getElementById('printSelect');
+  if (!sel) return;
+  const current = sel.value;
+  sel.innerHTML = products.map(p => `
+    <option value="${p.id}">${escapeHtml(p.name)} (${escapeHtml(p.sku)}) — ${money(p.price)}</option>
+  `).join('');
+  if (products.some(p => p.id === current)) sel.value = current;
+}
+
+function updateTagPreview() {
+  const sel = document.getElementById('printSelect');
+  const typeSel = document.getElementById('labelTypeSelect');
+  const preview = document.getElementById('tagPreviewWrapper');
+  const dimBadge = document.getElementById('labelDimensionsBadge');
+
+  if (!sel || !preview) return;
+
+  const product = products.find(p => p.id === sel.value);
+  if (!product) {
+    preview.innerHTML = '<div style="color:var(--muted);">Select a product above</div>';
+    return;
+  }
+
+  const labelType = typeSel ? typeSel.value : 'dumbbell';
+  const showPrice = document.getElementById('showPriceCheck')?.checked ?? true;
+  const showMaterial = document.getElementById('showMaterialCheck')?.checked ?? true;
+  const showBrand = document.getElementById('showBrandCheck')?.checked ?? true;
+
+  if (labelType === 'dumbbell') {
+    dimBadge.textContent = '50mm × 12mm (Foldable Wings)';
+    preview.innerHTML = `
+      <div class="label-preview-dumbbell">
+        <div class="dumbbell-left">
+          ${showBrand ? '<div class="dumbbell-brand">LINI JEWELS</div>' : ''}
+          <div class="dumbbell-name" title="${escapeHtml(product.name)}">${escapeHtml(product.name)}</div>
+          ${showMaterial ? `<div style="font-size:8px;color:#444;">${escapeHtml(product.material || 'Gold Covering')}</div>` : ''}
+          <div class="dumbbell-sku">${escapeHtml(product.sku)}</div>
+        </div>
+        <div class="dumbbell-mid">FOLD</div>
+        <div class="dumbbell-right">
+          <svg id="previewBarcodeSvg" class="dumbbell-barcode-svg"></svg>
+          ${showPrice ? `<div class="dumbbell-price">${money(product.price)}</div>` : ''}
+        </div>
+      </div>
+    `;
+    renderBarcodeSvg('#previewBarcodeSvg', product.sku, { height: 26, width: 1.1 });
+  } else if (labelType === 'compact') {
+    dimBadge.textContent = '30mm × 15mm (Mini Tag)';
+    preview.innerHTML = `
+      <div class="label-preview-compact">
+        ${showBrand ? '<div class="tag-brand">LINI JEWELS</div>' : ''}
+        <div class="tag-prod-title">${escapeHtml(product.name)}</div>
+        <svg id="previewBarcodeSvg" class="tag-barcode"></svg>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px;">
+          <span style="font-family:var(--mono);font-size:9px;font-weight:bold;">${escapeHtml(product.sku)}</span>
+          ${showPrice ? `<span class="tag-price-row">${money(product.price)}</span>` : ''}
+        </div>
+      </div>
+    `;
+    renderBarcodeSvg('#previewBarcodeSvg', product.sku, { height: 26, width: 1.2 });
+  } else {
+    // standard or wide
+    const isWide = labelType === 'wide';
+    dimBadge.textContent = isWide ? '50mm × 25mm (2" × 1")' : '38mm × 25mm (1.5" × 1")';
+    preview.innerHTML = `
+      <div class="label-preview-standard" style="width:${isWide ? '280px' : '230px'};">
+        ${showBrand ? '<div class="tag-brand">LINI JEWELS</div>' : ''}
+        <div class="tag-prod-title">${escapeHtml(product.name)}</div>
+        ${showMaterial ? `<div class="tag-meta">${escapeHtml(product.material || 'Gold Covering')} · ${escapeHtml(product.category)}</div>` : ''}
+        <svg id="previewBarcodeSvg" class="tag-barcode"></svg>
+        <div style="display:flex;justify-content:space-between;width:100%;align-items:center;padding:0 4px;">
+          <span style="font-family:var(--mono);font-size:10px;font-weight:bold;">${escapeHtml(product.sku)}</span>
+          ${showPrice ? `<span class="tag-price-row">${money(product.price)}</span>` : ''}
+        </div>
+      </div>
+    `;
+    renderBarcodeSvg('#previewBarcodeSvg', product.sku, { height: 38, width: 1.3 });
+  }
+}
+
+function renderBarcodeSvg(selector, text, opts = {}) {
+  if (typeof JsBarcode === 'undefined') return;
+  try {
+    JsBarcode(selector, text, {
+      format: "CODE128",
+      displayValue: false,
+      margin: 0,
+      lineColor: "#000000",
+      background: "transparent",
+      height: opts.height || 30,
+      width: opts.width || 1.3
+    });
+  } catch (err) {
+    console.error('Barcode render error:', err);
+  }
+}
+
+function quickPrintTag(id) {
+  showPage('print');
+  const sel = document.getElementById('printSelect');
+  if (sel) sel.value = id;
+  updateTagPreview();
+}
+
+function printTagsNow() {
+  const sel = document.getElementById('printSelect');
+  const copiesInput = document.getElementById('printCopies');
+  const typeSel = document.getElementById('labelTypeSelect');
+
+  const product = products.find(p => p.id === sel.value);
+  if (!product) {
+    alert('Please select a product first.');
+    return;
+  }
+
+  const copies = Math.min(500, Math.max(1, parseInt(copiesInput.value, 10) || 1));
+  const labelType = typeSel.value;
+  generatePrintWindow([product], copies, labelType);
+}
+
+function printAllInStock() {
+  const inStock = products.filter(p => p.stock > 0);
+  if (!inStock.length) {
+    alert('No items currently in stock.');
+    return;
+  }
+  const typeSel = document.getElementById('labelTypeSelect');
+  if (confirm(`Print 1 tag for all ${inStock.length} in-stock jewellery items?`)) {
+    generatePrintWindow(inStock, 1, typeSel.value);
+  }
+}
+
+function printCalibrationTest() {
+  const dummy = {
+    id: 'test',
+    name: 'Calibration Test Tag',
+    sku: 'TEST-123456',
+    category: 'Test',
+    price: 999,
+    material: 'Alignment Calibration'
+  };
+  generatePrintWindow([dummy], 2, document.getElementById('labelTypeSelect').value);
+}
+
+// Clean thermal-printer-optimized printable window
+function generatePrintWindow(productList, copiesPerItem, labelType) {
+  const printWin = window.open('', '_blank', 'width=600,height=750');
+  if (!printWin) {
+    alert('Please allow popups to open the thermal print dialog.');
+    return;
+  }
+
+  // Dimension mapping for thermal barcode roll printers
+  let pageCss = '';
+  let tagClass = '';
+  let barcodeHeight = 28;
+  let barcodeWidth = 1.2;
+
+  if (labelType === 'dumbbell') {
+    // 50mm x 12mm jewelry tag
+    pageCss = '@page { size: 50mm 12mm; margin: 0; } body { margin: 0; padding: 0; }';
+    tagClass = 'print-dumbbell';
+    barcodeHeight = 22;
+    barcodeWidth = 1.0;
+  } else if (labelType === 'compact') {
+    // 30mm x 15mm
+    pageCss = '@page { size: 30mm 15mm; margin: 0; } body { margin: 0; padding: 0; }';
+    tagClass = 'print-compact';
+    barcodeHeight = 20;
+    barcodeWidth = 1.0;
+  } else if (labelType === 'wide') {
+    // 50mm x 25mm
+    pageCss = '@page { size: 50mm 25mm; margin: 0; } body { margin: 0; padding: 0; }';
+    tagClass = 'print-standard-wide';
+    barcodeHeight = 35;
+    barcodeWidth = 1.3;
+  } else if (labelType === 'a4') {
+    // A4 sheet 3x8 = 24 per page
+    pageCss = '@page { size: A4 portrait; margin: 8mm; } body { margin: 0; }';
+    tagClass = 'print-a4-sheet';
+    barcodeHeight = 30;
+    barcodeWidth = 1.2;
+  } else {
+    // standard 38mm x 25mm
+    pageCss = '@page { size: 38mm 25mm; margin: 0; } body { margin: 0; padding: 0; }';
+    tagClass = 'print-standard';
+    barcodeHeight = 30;
+    barcodeWidth = 1.2;
+  }
+
+  let htmlItems = '';
+  productList.forEach(prod => {
+    for (let i = 0; i < copiesPerItem; i++) {
+      if (labelType === 'dumbbell') {
+        htmlItems += `
+          <div class="thermal-tag print-dumbbell">
+            <div class="db-left">
+              <div class="b-shop">LINI JEWELS</div>
+              <div class="b-title">${escapeHtml(prod.name)}</div>
+              <div class="b-sku">${escapeHtml(prod.sku)}</div>
+            </div>
+            <div class="db-mid"></div>
+            <div class="db-right">
+              <svg class="barcode-target" data-sku="${escapeHtml(prod.sku)}"></svg>
+              <div class="b-price">${money(prod.price)}</div>
+            </div>
+          </div>
+        `;
+      } else {
+        htmlItems += `
+          <div class="thermal-tag ${tagClass}">
+            <div class="b-shop">LINI JEWELS</div>
+            <div class="b-title">${escapeHtml(prod.name)}</div>
+            <div class="b-meta">${escapeHtml(prod.material || '')}</div>
+            <svg class="barcode-target" data-sku="${escapeHtml(prod.sku)}"></svg>
+            <div class="b-bottom">
+              <span class="b-sku">${escapeHtml(prod.sku)}</span>
+              <span class="b-price">${money(prod.price)}</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+  });
+
+  const fullDoc = `<!DOCTYPE html>
+<html>
+<head>
+  <title>Lini Jewels - Barcode Tag Print</title>
+  <style>
+    ${pageCss}
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+    }
+    .thermal-tag {
+      background: #fff;
+      overflow: hidden;
+      display: flex;
+      page-break-after: always;
+      break-after: page;
+      margin: 0 auto;
+    }
+    
+    /* Dumbbell fold 50mm x 12mm */
+    .print-dumbbell {
+      width: 50mm;
+      height: 12mm;
+      padding: 0.5mm 1mm;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .db-left { width: 22mm; text-align: center; line-height: 1.1; }
+    .db-mid { width: 6mm; }
+    .db-right { width: 22mm; text-align: center; }
+    .b-shop { font-size: 7pt; font-weight: bold; letter-spacing: 0.3px; }
+    .b-title { font-size: 6.5pt; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .b-sku { font-family: monospace; font-size: 6.5pt; font-weight: bold; }
+    .b-price { font-size: 8pt; font-weight: 900; }
+    .barcode-target { max-width: 100%; height: ${barcodeHeight}px; display: block; margin: 0 auto; }
+
+    /* Standard 38mm x 25mm */
+    .print-standard {
+      width: 38mm;
+      height: 25mm;
+      padding: 1.5mm;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .print-standard .b-shop { font-size: 8pt; font-weight: 900; }
+    .print-standard .b-title { font-size: 7.5pt; font-weight: bold; }
+    .print-standard .b-meta { font-size: 6pt; color: #333; }
+    .print-standard .b-bottom { width: 100%; display: flex; justify-content: space-between; font-size: 8pt; font-weight: bold; }
+
+    /* Wide 50mm x 25mm */
+    .print-standard-wide {
+      width: 50mm;
+      height: 25mm;
+      padding: 2mm;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .print-standard-wide .b-shop { font-size: 9pt; font-weight: 900; }
+    .print-standard-wide .b-bottom { width: 100%; display: flex; justify-content: space-between; font-size: 9pt; font-weight: 900; }
+
+    /* Compact 30mm x 15mm */
+    .print-compact {
+      width: 30mm;
+      height: 15mm;
+      padding: 1mm;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    /* A4 grid */
+    .print-a4-sheet {
+      width: 63.5mm;
+      height: 38.1mm;
+      display: inline-flex;
+      margin: 1mm;
+      border: 1px dashed #ccc;
+      page-break-after: auto;
+      break-after: auto;
+      padding: 2mm;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"><\/script>
+</head>
+<body>
+  ${htmlItems}
+  <script>
+    window.onload = function() {
+      document.querySelectorAll('.barcode-target').forEach(function(el) {
+        var sku = el.getAttribute('data-sku');
+        try {
+          JsBarcode(el, sku, {
+            format: "CODE128",
+            displayValue: false,
+            height: ${barcodeHeight},
+            width: ${barcodeWidth},
+            margin: 0,
+            lineColor: "#000000"
+          });
+        } catch(e) {}
+      });
+      setTimeout(function() {
+        window.print();
+      }, 400);
+    };
+  <\/script>
+</body>
+</html>`;
+
+  printWin.document.open();
+  printWin.document.write(fullDoc);
+  printWin.document.close();
+}
+
+// ==========================================
+// DATA RENDERING (PRODUCTS, STOCK, STATS)
+// ==========================================
+function renderAll() {
+  const totalItems = products.length;
+  const totalUnits = products.reduce((sum, p) => sum + Number(p.stock || 0), 0);
+  const totalValue = products.reduce((sum, p) => sum + (Number(p.stock || 0) * Number(p.price || 0)), 0);
+  const lowCount = products.filter(p => Number(p.stock) <= Number(p.min)).length;
+
+  document.getElementById('s-products').textContent = totalItems;
+  document.getElementById('s-stock').textContent = totalUnits;
+  document.getElementById('s-value').textContent = money(totalValue);
+  document.getElementById('s-low').textContent = lowCount;
+
+  // Recent table
+  const recentTbody = document.getElementById('recent');
+  if (recentTbody) {
+    recentTbody.innerHTML = products.slice(-5).reverse().map(p => `
+      <tr>
+        <td>
+          <b>${escapeHtml(p.name)}</b>
+          <div style="color:var(--muted);font-size:11px;">${escapeHtml(p.material || '')}</div>
+        </td>
+        <td class="sku">${escapeHtml(p.sku)}</td>
+        <td>${escapeHtml(p.category)}</td>
+        <td><b>${money(p.price)}</b></td>
+        <td><b>${p.stock}</b></td>
+        <td>
+          <span class="pill ${p.stock <= 0 ? 'out' : (p.stock <= p.min ? 'low' : '')}">
+            ${p.stock <= 0 ? 'Out of stock' : (p.stock <= p.min ? 'Low stock' : 'Available')}
+          </span>
+        </td>
+        <td>
+          <button class="linkbtn" onclick="quickPrintTag('${p.id}')">🏷️ Print</button>
+        </td>
+      </tr>
+    `).join('') || '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:24px;">No items yet.</td></tr>';
+  }
+
+  renderProducts();
+  renderStock();
+  populatePrintSelect();
+}
+
+function renderProducts() {
+  const input = document.getElementById('productSearch');
+  const q = (input ? input.value : '').toLowerCase();
+  const rows = document.getElementById('productRows');
+  if (!rows) return;
+
+  const filtered = products.filter(p => 
+    (p.name + p.sku + p.category + (p.material || '')).toLowerCase().includes(q)
+  );
+
+  rows.innerHTML = filtered.map(p => `
+    <tr>
+      <td>
+        <b>${escapeHtml(p.name)}</b>
+        <div style="color:var(--muted);font-size:11px;">${escapeHtml(p.material || '')}</div>
+      </td>
+      <td class="sku">${escapeHtml(p.sku)}</td>
+      <td>${escapeHtml(p.category)}</td>
+      <td>${money(p.cost)}</td>
+      <td><b>${money(p.price)}</b></td>
+      <td>
+        <span class="pill ${p.stock <= 0 ? 'out' : (p.stock <= p.min ? 'low' : '')}">
+          ${p.stock} units
+        </span>
+      </td>
+      <td>
+        <div class="actions">
+          <button class="linkbtn" onclick="editProduct('${p.id}')">Edit</button>
+          <button class="linkbtn" onclick="quickPrintTag('${p.id}')">🏷️ Tag</button>
+          <button class="linkbtn danger" onclick="deleteProduct('${p.id}')">Delete</button>
+        </div>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--muted);">No matching jewellery products.</td></tr>';
+}
+
+function renderStock() {
+  const input = document.getElementById('stockSearch');
+  const q = (input ? input.value : '').toLowerCase();
+  const rows = document.getElementById('stockRows');
+  if (!rows) return;
+
+  const filtered = products.filter(p => (p.name + p.sku).toLowerCase().includes(q));
+
+  rows.innerHTML = filtered.map(p => `
+    <tr>
+      <td><b>${escapeHtml(p.name)}</b></td>
+      <td class="sku">${escapeHtml(p.sku)}</td>
+      <td><b style="font-size:14px;">${p.stock}</b></td>
+      <td>Alert at ≤ ${p.min}</td>
+      <td>
+        <span class="pill ${p.stock <= 0 ? 'out' : (p.stock <= p.min ? 'low' : '')}">
+          ${p.stock <= 0 ? 'Out of stock' : (p.stock <= p.min ? 'Restock immediately' : 'Optimal')}
+        </span>
+      </td>
+      <td>
+        <div class="actions">
+          <button class="secondary" style="padding:4px 9px;" onclick="adjustStock('${p.id}', -1)">−1</button>
+          <button class="secondary" style="padding:4px 9px;" onclick="adjustStock('${p.id}', 1)">＋1</button>
+        </div>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--muted);">No items found.</td></tr>';
+}
+
+// PRODUCT FORM (ADD & EDIT)
+document.getElementById('productForm').onsubmit = function(e) {
+  e.preventDefault();
+
+  const item = {
+    id: editingId || String(Date.now()),
+    name: document.getElementById('p-name').value.trim(),
+    sku: document.getElementById('p-sku').value.trim().toUpperCase(),
+    category: document.getElementById('p-category').value,
+    cost: Number(document.getElementById('p-cost').value) || 0,
+    price: Number(document.getElementById('p-price').value) || 0,
+    stock: Number(document.getElementById('p-stock').value) || 0,
+    min: Number(document.getElementById('p-min').value) || 3,
+    material: document.getElementById('p-material').value.trim(),
+    supplier: document.getElementById('p-supplier').value.trim()
+  };
+
+  // Check unique SKU
+  if (products.some(p => p.sku === item.sku && p.id !== item.id)) {
+    alert('This Barcode SKU already belongs to another item. Please keep SKUs unique.');
+    return;
+  }
+
+  if (editingId) {
+    products = products.map(p => p.id === editingId ? item : p);
+    showToast('Jewellery item updated.');
+  } else {
+    products.push(item);
+    showToast('Jewellery item created with Barcode.');
+  }
+
+  saveData();
+  editingId = null;
+  document.getElementById('productForm').reset();
+  showPage('products');
+};
+
+function editProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  editingId = id;
+  showPage('add');
+  document.getElementById('formTitle').textContent = 'Edit Jewellery Item';
+
+  document.getElementById('p-name').value = p.name || '';
+  document.getElementById('p-sku').value = p.sku || '';
+  document.getElementById('p-category').value = p.category || '';
+  document.getElementById('p-cost').value = p.cost ?? 0;
+  document.getElementById('p-price').value = p.price ?? 0;
+  document.getElementById('p-stock').value = p.stock ?? 1;
+  document.getElementById('p-min').value = p.min ?? 3;
+  document.getElementById('p-material').value = p.material || '';
+  document.getElementById('p-supplier').value = p.supplier || '';
+}
+
+function deleteProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (p && confirm(`Delete "${p.name}" (${p.sku}) permanently?`)) {
+    products = products.filter(x => x.id !== id);
+    saveData();
+    showToast('Item deleted.');
+  }
+}
+
+function adjustStock(id, delta, customMsg) {
+  const p = products.find(x => x.id === id);
+  if (p) {
+    if (p.stock + delta < 0) {
+      alert('Stock cannot be negative.');
+      return;
+    }
+    p.stock += delta;
+    saveData();
+    showToast(customMsg || `Stock updated to ${p.stock} units`);
+    // re-render scanner card if this product is currently active
+    if (!document.getElementById('page-scanner').classList.contains('hidden') && lastScannedSku === p.sku) {
+      processScannedCode(p.sku);
+    }
+  }
+}
+
+// EXPORTS
+function exportData() {
+  const backup = {
+    business: 'Lini Jewels & Gold Covering',
+    timestamp: new Date().toISOString(),
+    totalItems: products.length,
+    products: products
+  };
+  const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `lini-jewels-backup-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function exportCSV() {
+  const headers = ['SKU', 'Product Name', 'Category', 'Purchase Cost (INR)', 'Selling Price (INR)', 'Current Stock', 'Alert Threshold', 'Material'];
+  const rows = products.map(p => [
+    p.sku,
+    p.name,
+    p.category,
+    p.cost,
+    p.price,
+    p.stock,
+    p.min,
+    p.material || ''
+  ]);
+  const csvContent = [headers, ...rows]
+    .map(r => r.map(field => `"${String(field ?? '').replace(/"/g, '""')}"`).join(','))
+    .join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `lini-jewels-inventory-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// Launch application on load
+window.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
